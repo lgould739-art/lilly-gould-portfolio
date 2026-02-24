@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lilly Gould — Artist</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --lime: #B4FF00;
-    --pink: #FF007F;
-    --black: #111;
-    --white: #ffffff;
+    --dusty-pink: #e97a9d;
+    --butter: #f6d365;
+    --sky: #8ecae6;
+    --plum: #5e2b5f;
+    --warm-brown: #7a4e2d;
+    --cream: #fdf8f2;
 }
 
 html {
@@ -20,72 +22,69 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--white);
-    color: var(--black);
-    overflow-x: hidden;
+    background: var(--cream);
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--plum);
 }
 
-/* STICKY NAV */
+/* NAVIGATION */
 
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--black);
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    padding: 20px 0;
+    background: var(--cream);
+    border-bottom: 1px solid var(--warm-brown);
+    padding: 15px 0;
+    text-align: center;
     z-index: 1000;
 }
 
 nav a {
-    color: var(--lime);
+    margin: 0 20px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: var(--pink);
+    color: var(--warm-brown);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
 /* HEADER */
 
 header {
     min-height: 100vh;
-    background:
-        radial-gradient(var(--pink) 3px, transparent 3px),
-        var(--lime);
-    background-size: 40px 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 0 20px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            var(--dusty-pink),
+            var(--dusty-pink) 60px,
+            var(--butter) 60px,
+            var(--butter) 120px
+        );
 }
 
 h1 {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    color: var(--pink);
-    background: var(--white);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5rem);
+    background: var(--cream);
     padding: 20px 40px;
 }
 
 .subtitle {
     margin-top: 20px;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
-/* SECTIONS */
+/* SECTION BASE */
 
 section {
-    padding: 120px 10%;
+    padding: 120px 12%;
     opacity: 0;
-    transform: translateY(80px);
+    transform: translateY(60px);
     transition: all 1s ease;
 }
 
@@ -94,56 +93,39 @@ section.visible {
     transform: translateY(0);
 }
 
-/* STRIPED BACKGROUND */
-
-#paintings {
-    background: repeating-linear-gradient(
-        90deg,
-        var(--lime),
-        var(--lime) 40px,
-        var(--pink) 40px,
-        var(--pink) 80px
-    );
+.zine-page {
+    background: white;
+    padding: 60px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border: 1px solid #e5e0da;
 }
 
-/* PLAID STYLE BACKGROUND */
+/* PAINTINGS */
+
+#paintings {
+    background:
+        radial-gradient(circle at 20% 20%, var(--sky) 4px, transparent 4px) 0 0 / 40px 40px,
+        var(--cream);
+}
+
+/* FIBER */
 
 #fiber {
     background:
         repeating-linear-gradient(
             0deg,
-            var(--lime),
-            var(--lime) 60px,
-            var(--pink) 60px,
-            var(--pink) 120px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 60px,
-            rgba(0,0,0,0.1) 60px,
-            rgba(0,0,0,0.1) 62px
+            var(--butter),
+            var(--butter) 50px,
+            var(--dusty-pink) 50px,
+            var(--dusty-pink) 100px
         );
 }
 
-/* CONTENT BOXES */
-
-.content {
-    background: var(--white);
-    padding: 60px;
-}
-
-h2 {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 40px;
-}
-
-/* ART GRID */
+/* GRID */
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
 }
 
@@ -155,26 +137,27 @@ h2 {
 
 .caption {
     margin-top: 10px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 /* ABOUT */
 
 #about {
-    background: var(--pink);
-    color: var(--white);
-}
-
-#about .content {
-    background: var(--lime);
-    color: var(--black);
+    background:
+        repeating-linear-gradient(
+            90deg,
+            var(--sky),
+            var(--sky) 40px,
+            var(--cream) 40px,
+            var(--cream) 80px
+        );
 }
 
 /* CONTACT */
 
 #contact {
-    background: var(--black);
-    color: var(--lime);
+    background: var(--plum);
+    color: var(--cream);
     text-align: center;
 }
 
@@ -182,8 +165,7 @@ footer {
     padding: 40px;
     text-align: center;
     font-size: 0.8rem;
-    background: var(--black);
-    color: var(--pink);
+    background: var(--cream);
 }
 </style>
 </head>
@@ -199,50 +181,50 @@ footer {
 
 <header>
     <div>
-        <h1>LILLY GOULD</h1>
-        <div class="subtitle">Painter + Fiber Artist</div>
+        <h1>Lilly Gould</h1>
+        <div class="subtitle">Painter & Fiber Artist</div>
     </div>
 </header>
 
 <section id="paintings">
-    <div class="content">
+    <div class="zine-page">
         <h2>Paintings</h2>
         <div class="grid">
             <div class="art-piece">
-                <img src="https://via.placeholder.com/600x800" alt="">
-                <div class="caption">Title — Acrylic on Canvas — 2026</div>
+                <img src="painting1.jpg">
+                <div class="caption">Title — Acrylic — 2026</div>
             </div>
             <div class="art-piece">
-                <img src="https://via.placeholder.com/600x800" alt="">
-                <div class="caption">Title — Oil on Canvas — 2026</div>
+                <img src="painting2.jpg">
+                <div class="caption">Title — Oil — 2026</div>
             </div>
         </div>
     </div>
 </section>
 
 <section id="fiber">
-    <div class="content">
+    <div class="zine-page">
         <h2>Fiber Work</h2>
         <div class="grid">
             <div class="art-piece">
-                <img src="https://via.placeholder.com/600x800" alt="">
-                <div class="caption">Quilt — Cotton — 2026</div>
+                <img src="fiber1.jpg">
+                <div class="caption">Quilt — 2026</div>
             </div>
             <div class="art-piece">
-                <img src="https://via.placeholder.com/600x800" alt="">
-                <div class="caption">Tapestry — Mixed Fiber — 2026</div>
+                <img src="fiber2.jpg">
+                <div class="caption">Tapestry — 2026</div>
             </div>
         </div>
     </div>
 </section>
 
 <section id="about">
-    <div class="content">
+    <div class="zine-page">
         <h2>About</h2>
         <p>
-        Lilly Gould is a painter and fiber artist working in bold color,
-        repetition, softness, and layered textile pattern.
-        Her work blends quilting traditions with contemporary abstraction.
+        Lilly Gould works across painting and fiber, exploring repetition,
+        domestic interiors, textile traditions, color memory, and layered pattern.
+        Her work moves between softness and structure.
         </p>
     </div>
 </section>
