@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lilly Gould — Artist</title>
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-: root {
+:root {
     --lime: #B4FF00;
-    --pink: #FF1493;
+    --pink: #FF007F;
     --black: #111;
-    --cream: #fffdf7;
+    --white: #ffffff;
 }
 
 html {
@@ -20,152 +20,131 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Space Mono', monospace;
-    background: var(--cream);
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--white);
     color: var(--black);
     overflow-x: hidden;
 }
 
-/* CHAOTIC BACKGROUND LAYERS */
-
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background-image:
-        radial-gradient(var(--pink) 3px, transparent 3px),
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 20px,
-            rgba(0,0,0,0.05) 20px,
-            rgba(0,0,0,0.05) 40px
-        );
-    background-size: 40px 40px, auto;
-    opacity: 0.15;
-    z-index: -2;
-}
-
-/* PLAID BLOCK */
-
-.plaid-strip {
-    position: fixed;
-    top: 0;
-    left: -20%;
-    width: 140%;
-    height: 200px;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            var(--lime),
-            var(--lime) 30px,
-            var(--pink) 30px,
-            var(--pink) 60px
-        ),
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 30px,
-            rgba(0,0,0,0.3) 30px,
-            rgba(0,0,0,0.3) 32px
-        );
-    transform: rotate(-3deg);
-    z-index: -1;
-}
-
-/* NAVIGATION */
+/* STICKY NAV */
 
 nav {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10;
+    top: 0;
+    width: 100%;
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px 0;
+    z-index: 1000;
 }
 
 nav a {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 10px 15px;
-    background: var(--pink);
-    color: white;
+    color: var(--lime);
     text-decoration: none;
-    font-weight: bold;
-    transform: rotate(-3deg);
-    border: 2px solid black;
-    transition: 0.2s;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: 0.3s;
 }
 
-nav a:nth-child(2) { transform: rotate(2deg); background: var(--lime); color: black;}
-nav a:nth-child(3) { transform: rotate(-1deg); }
-
 nav a:hover {
-    transform: scale(1.1) rotate(0deg);
+    color: var(--pink);
 }
 
 /* HEADER */
 
 header {
-    padding: 200px 10% 120px;
+    min-height: 100vh;
+    background:
+        radial-gradient(var(--pink) 3px, transparent 3px),
+        var(--lime);
+    background-size: 40px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
 }
 
 h1 {
-    font-family: 'Rubik Mono One', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    line-height: 1;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
     color: var(--pink);
-    text-shadow: 5px 5px var(--lime);
-    transform: rotate(-2deg);
+    background: var(--white);
+    padding: 20px 40px;
 }
 
 .subtitle {
-    font-size: 1.2rem;
     margin-top: 20px;
-    background: var(--lime);
-    display: inline-block;
-    padding: 10px 20px;
-    transform: rotate(2deg);
+    font-size: 1.2rem;
 }
 
 /* SECTIONS */
 
 section {
     padding: 120px 10%;
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 1s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* STRIPED BACKGROUND */
+
+#paintings {
+    background: repeating-linear-gradient(
+        90deg,
+        var(--lime),
+        var(--lime) 40px,
+        var(--pink) 40px,
+        var(--pink) 80px
+    );
+}
+
+/* PLAID STYLE BACKGROUND */
+
+#fiber {
+    background:
+        repeating-linear-gradient(
+            0deg,
+            var(--lime),
+            var(--lime) 60px,
+            var(--pink) 60px,
+            var(--pink) 120px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 60px,
+            rgba(0,0,0,0.1) 60px,
+            rgba(0,0,0,0.1) 62px
+        );
+}
+
+/* CONTENT BOXES */
+
+.content {
+    background: var(--white);
+    padding: 60px;
 }
 
 h2 {
-    font-family: 'Rubik Mono One', sans-serif;
+    font-family: 'Archivo Black', sans-serif;
     font-size: 2rem;
     margin-bottom: 40px;
-    background: var(--pink);
-    color: white;
-    display: inline-block;
-    padding: 10px 20px;
-    transform: rotate(-2deg);
 }
 
 /* ART GRID */
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
-}
-
-.art-piece {
-    background: white;
-    border: 3px solid black;
-    padding: 15px;
-    transform: rotate(-2deg);
-    transition: 0.3s;
-}
-
-.art-piece:nth-child(even) {
-    transform: rotate(2deg);
-}
-
-.art-piece:hover {
-    transform: scale(1.05) rotate(0deg);
 }
 
 .art-piece img {
@@ -179,116 +158,120 @@ h2 {
     font-size: 0.9rem;
 }
 
-/* STRIPE SECTION BACKGROUND */
-
-#fiber {
-    background:
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,20,147,0.05),
-            rgba(255,20,147,0.05) 20px,
-            rgba(180,255,0,0.05) 20px,
-            rgba(180,255,0,0.05) 40px
-        );
-}
-
 /* ABOUT */
 
-.about-box {
-    max-width: 600px;
+#about {
+    background: var(--pink);
+    color: var(--white);
+}
+
+#about .content {
     background: var(--lime);
-    padding: 30px;
-    transform: rotate(-2deg);
-    border: 3px solid black;
+    color: var(--black);
 }
 
 /* CONTACT */
 
-.contact-box {
-    background: var(--pink);
-    color: white;
-    padding: 30px;
-    display: inline-block;
-    transform: rotate(2deg);
-    border: 3px solid black;
+#contact {
+    background: var(--black);
+    color: var(--lime);
+    text-align: center;
 }
 
 footer {
+    padding: 40px;
     text-align: center;
-    padding: 60px 20px;
     font-size: 0.8rem;
+    background: var(--black);
+    color: var(--pink);
 }
 </style>
 </head>
 
 <body>
 
-<div class="plaid-strip"></div>
-
 <nav>
     <a href="#paintings">Paintings</a>
     <a href="#fiber">Fiber</a>
     <a href="#about">About</a>
+    <a href="#contact">Contact</a>
 </nav>
 
 <header>
-    <h1>LILLY GOULD</h1>
-    <div class="subtitle">Painter / Fiber Artist / Textile Chaos</div>
+    <div>
+        <h1>LILLY GOULD</h1>
+        <div class="subtitle">Painter + Fiber Artist</div>
+    </div>
 </header>
 
 <section id="paintings">
-    <h2>Paintings</h2>
-    <div class="grid">
-        <div class="art-piece">
-            <img src="https://via.placeholder.com/500x600" alt="Painting 1">
-            <div class="caption">Title — Acrylic on Canvas — 2026</div>
-        </div>
-
-        <div class="art-piece">
-            <img src="https://via.placeholder.com/500x600" alt="Painting 2">
-            <div class="caption">Title — Oil on Canvas — 2026</div>
+    <div class="content">
+        <h2>Paintings</h2>
+        <div class="grid">
+            <div class="art-piece">
+                <img src="https://via.placeholder.com/600x800" alt="">
+                <div class="caption">Title — Acrylic on Canvas — 2026</div>
+            </div>
+            <div class="art-piece">
+                <img src="https://via.placeholder.com/600x800" alt="">
+                <div class="caption">Title — Oil on Canvas — 2026</div>
+            </div>
         </div>
     </div>
 </section>
 
 <section id="fiber">
-    <h2>Fiber Work</h2>
-    <div class="grid">
-        <div class="art-piece">
-            <img src="https://via.placeholder.com/500x600" alt="Quilt">
-            <div class="caption">Quilt — Cotton & Mixed Fabric — 2026</div>
-        </div>
-
-        <div class="art-piece">
-            <img src="https://via.placeholder.com/500x600" alt="Tapestry">
-            <div class="caption">Tapestry — Woven Fiber — 2026</div>
+    <div class="content">
+        <h2>Fiber Work</h2>
+        <div class="grid">
+            <div class="art-piece">
+                <img src="https://via.placeholder.com/600x800" alt="">
+                <div class="caption">Quilt — Cotton — 2026</div>
+            </div>
+            <div class="art-piece">
+                <img src="https://via.placeholder.com/600x800" alt="">
+                <div class="caption">Tapestry — Mixed Fiber — 2026</div>
+            </div>
         </div>
     </div>
 </section>
 
 <section id="about">
-    <h2>About</h2>
-    <div class="about-box">
+    <div class="content">
+        <h2>About</h2>
         <p>
-        Lilly Gould is a painter and fiber artist exploring color, repetition,
-        softness, tension, and texture. Her work combines bold palettes,
-        textile traditions, and chaotic pattern layering — pulling from
-        quilting, crochet, and painterly abstraction.
+        Lilly Gould is a painter and fiber artist working in bold color,
+        repetition, softness, and layered textile pattern.
+        Her work blends quilting traditions with contemporary abstraction.
         </p>
     </div>
 </section>
 
 <section id="contact">
     <h2>Contact</h2>
-    <div class="contact-box">
-        Email: your@email.com<br>
-        Instagram: @yourhandle
-    </div>
+    <p>Email: your@email.com</p>
+    <p>Instagram: @yourhandle</p>
 </section>
 
 <footer>
     © 2026 Lilly Gould
 </footer>
+
+<script>
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+        }
+    });
+}, { threshold: 0.2 });
+
+sections.forEach(section => {
+    observer.observe(section);
+});
+</script>
 
 </body>
 </html>
